@@ -31,10 +31,10 @@ http.createServer(function (req, res) {
 			if (err) throw err;
 			var dbo = db.db("RBSN");
 			var query = {q};
-			dbo.collection("data").sort({dateTime:-1}).find(q,{ _id:0,id:0}).toArray(function(err, result) {
+			dbo.collection("data").find(q,{ _id:0,id:0}).sort({dateTime:-1}).toArray(function(err, result) {
 				if (err) throw err;
 				res.writeHead(200, {'Content-Type': 'text/json'});
-				res.end(JSON.stringify(resultObj.first()));
+				res.end(JSON.stringify(result[0]);
 				db.close();
 			});
 		});
@@ -54,4 +54,4 @@ http.createServer(function (req, res) {
 			res.end(txt);
 		});
 	}
-}).listen(27018);
+}).listen(8080);
